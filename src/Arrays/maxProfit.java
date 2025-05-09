@@ -31,7 +31,23 @@ public class maxProfit {
 
     public int maxProfit1(int[] prices)
     {
+        int profit=0;
+        int min=prices[0];
+        int max=Integer.MIN_VALUE;
 
+        for (int i=1;i< prices.length;i++)
+        {
+            profit=prices[i]-min;
+
+            if(profit<0)
+            {
+                profit=0;
+            }
+         min=Math.min(min,prices[i]);
+            max=Math.max(max,profit);
+        }
+
+        return max;
 
     }
 }
