@@ -17,7 +17,7 @@ public class generateParenthesis {
         System.out.println(result);
     }
 
-    public  List<String> backtrack(List<String> res,StringBuilder sb,int open,int close,int n)
+    public static List<String> backtrack(List<String> res, StringBuilder sb, int open, int close, int n)
     {
         if(open==n && close==n)
         {
