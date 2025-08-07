@@ -29,7 +29,7 @@ public class subsets {
         backtrack1(nums, result, list,i + 1, n);
 
         list.remove(list.size() - 1);
-        backtrack1(nums, result,list, i + 1, n);
+        
 
     }
 

@@ -17,7 +17,7 @@ public class combinationSum2 {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         Arrays.sort(candidates);
-        backtrack(candidates, target, result, list, 0, 0);
+        combinationSum2helper(0,candidates,0, target, result, list);
         return result;
 
     }
@@ -44,5 +44,32 @@ public class combinationSum2 {
             backtrack(candidates, target, result, list, sum + candidates[i], i + 1);
             list.remove(list.size() - 1);
         }
+    }
+
+    public static void combinationSum2helper(int index,int[] candidates,int sum,int target,List<List<Integer>> result, List<Integer> list)
+    {
+        if(sum==target)
+        {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        if(sum>target)
+        {
+            return;
+        }
+        if(index==candidates.length)
+        {
+            return;
+        }
+
+        if(sum<target)
+        {
+            list.add(candidates[index]);
+            combinationSum2helper(index+1,candidates,sum+candidates[index],target,result,list);
+            list.remove(list.size()-1);
+        }
+
+
+        combinationSum2helper(index+1,candidates,sum,target,result,list);
     }
 }

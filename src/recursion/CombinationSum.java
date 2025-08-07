@@ -2,6 +2,7 @@ package recursion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListResourceBundle;
 
 public class CombinationSum {
 
@@ -14,10 +15,9 @@ public class CombinationSum {
     }
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        backtrack(candidates, target, result, list, 0, 0);
-        return result;
+        List<List<Integer>> ans = new ArrayList<>();
+        combinationSumHelper(0, candidates, 0, target, ans, new ArrayList<>());
+        return ans;
 
 
     }
@@ -43,4 +43,33 @@ public class CombinationSum {
 
 
     }
+
+    public static void combinationSumHelper(int index, int[] candidates, int sum,int target, List<List<Integer>> ans,List<Integer> list)
+    {
+        if(sum>target)
+        {
+            return;
+        }
+        if (index >= candidates.length) {
+            return;
+        }
+
+        if(sum==target)
+        {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        if(sum<target)
+        {
+            list.add(candidates[index]);
+            combinationSumHelper(index,candidates,sum+candidates[index],target,ans,list);
+            list.remove(list.size()-1);
+
+        }
+        combinationSumHelper(index+1,candidates,sum,target,ans,list);
+
+    }
+
+
 }
